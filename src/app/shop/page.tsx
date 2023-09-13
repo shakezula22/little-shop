@@ -28,7 +28,7 @@ export default async function Shop() {
       </header>
       <div className="grid grid-cols-4 gap-2">
         {products.map((item: Product) => (
-          <Link href={`/products/${item.id}`}>
+          <Link key={item.id} href={`/products/${item.id}`}>
             <div className="border bg-white">
               <div>{item.title}</div>
               <div>{item.price}</div>
