@@ -37,7 +37,7 @@ export const CartProvider = ({ children }: CartProviderProps) => {
     if (!window) {
       return [];
     }
-    const localItems = localStorage.getItem('cartItems');
+    const localItems = window?.localStorage.getItem('cartItems');
 
     return localItems ? JSON.parse(localItems) : [];
   };
