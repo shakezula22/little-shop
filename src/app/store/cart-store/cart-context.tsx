@@ -34,7 +34,7 @@ export const CartContext = createContext({} as CartContext);
 
 export const CartProvider = ({ children }: CartProviderProps) => {
   const getLocalItems = () => {
-    if (!window) {
+    if (typeof window === 'undefined') {
       return [];
     }
     const localItems = window?.localStorage.getItem('cartItems');
