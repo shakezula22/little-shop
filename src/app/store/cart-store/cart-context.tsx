@@ -34,6 +34,9 @@ export const CartContext = createContext({} as CartContext);
 
 export const CartProvider = ({ children }: CartProviderProps) => {
   const getLocalItems = () => {
+    if (!window) {
+      return [];
+    }
     const localItems = localStorage.getItem('cartItems');
 
     return localItems ? JSON.parse(localItems) : [];

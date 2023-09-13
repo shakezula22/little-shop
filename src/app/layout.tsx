@@ -19,8 +19,8 @@ export default function RootLayout({
       <body
         className={`${inter.className} bg-stone-50 text-stone-800 mx-auto p-4`}
       >
-        {children}
-        {/* <CartProvider>{children}</CartProvider> */}
+        {/* {children} */}
+        <CartProvider>{children}</CartProvider>
       </body>
     </html>
   );
