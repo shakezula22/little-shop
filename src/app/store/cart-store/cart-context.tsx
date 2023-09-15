@@ -20,7 +20,7 @@ type CartContext = {
   getCartTotal: () => number;
 };
 
-type CartProduct = {
+export type CartProduct = {
   id: number;
   title: string;
   price: number;
@@ -33,16 +33,16 @@ type CartProduct = {
 export const CartContext = createContext({} as CartContext);
 
 export const CartProvider = ({ children }: CartProviderProps) => {
-  const getLocalItems = () => {
-    if (typeof window === 'undefined') {
-      return [];
+  const [cartItems, setCartItems] = useState<CartProduct[]>([]);
+
+  useEffect(() => {
+    const localStorageStr = localStorage.getItem('cartItems');
+    if (localStorageStr) {
+      setCartItems(JSON.parse(localStorageStr));
+    } else {
+      setCartItems([]);
     }
-    const localItems = window?.localStorage.getItem('cartItems');
-
-    return localItems ? JSON.parse(localItems) : [];
-  };
-
-  const [cartItems, setCartItems] = useState<CartProduct[]>(getLocalItems());
+  }, []);
 
   const addToCart = (item: CartProduct) => {
     const isItemInCart = cartItems.find(cartItem => cartItem.id === item.id);
@@ -51,12 +51,12 @@ export const CartProvider = ({ children }: CartProviderProps) => {
       setCartItems(
         cartItems.map(cartItem =>
           cartItem.id === item.id
-            ? { ...cartItem, quantity: cartItem.quantity + 1 }
+            ? { ...cartItem, quantity: cartItem.quantity + item.quantity }
             : cartItem
         )
       );
     } else {
-      setCartItems([...cartItems, { ...item, quantity: 1 }]);
+      setCartItems([...cartItems, { ...item }]);
     }
   };
 
@@ -90,14 +90,6 @@ export const CartProvider = ({ children }: CartProviderProps) => {
   useEffect(() => {
     localStorage.setItem('cartItems', JSON.stringify(cartItems));
   }, [cartItems]);
-
-  useEffect(
-    () => {
-      getLocalItems();
-    },
-    []
-    // returns any
-  );
 
   return (
     <CartContext.Provider

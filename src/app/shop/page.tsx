@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import AddCartButton from '../components/AddToCartForm';
 
 type Product = {
   id: number;
@@ -28,12 +29,17 @@ export default async function Shop() {
       </header>
       <div className="grid grid-cols-4 gap-2">
         {products.map((item: Product) => (
-          <Link key={item.id} href={`/products/${item.id}`}>
-            <div className="border bg-white">
-              <div>{item.title}</div>
-              <div>{item.price}</div>
+          <>
+            <Link key={item.id} href={`/products/${item.id}`}>
+              <div className="border bg-white">
+                <div>{item.title}</div>
+                <div>{item.price}</div>
+              </div>
+            </Link>
+            <div>
+              <AddCartButton {...item} />
             </div>
-          </Link>
+          </>
         ))}
       </div>
     </>

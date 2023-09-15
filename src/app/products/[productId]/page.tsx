@@ -1,3 +1,4 @@
+import AddCartButton from '@/app/components/AddToCartForm';
 import Link from 'next/link';
 
 type Props = {
@@ -32,8 +33,13 @@ export default async function ProductPage({ params }: Props) {
           <Link href="/cart">Cart</Link>
         </div>
       </header>
-      <h2>${item.price}</h2>
-      <p>{item.description}</p>
+      <div>
+        <h2>${item.price}</h2>
+        <p>{item.description}</p>
+      </div>
+      <div>
+        <AddCartButton {...item} />
+      </div>
     </>
   );
 }
