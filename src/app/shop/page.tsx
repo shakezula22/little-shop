@@ -1,5 +1,7 @@
 import Link from 'next/link';
 import AddCartButton from '../components/AddToCartForm';
+import Image from 'next/image';
+import { indieFlower } from '../utility/fonts';
 
 type Product = {
   id: number;
@@ -21,25 +23,35 @@ export default async function Shop() {
   return (
     <>
       <header className="flex justify-between items-center mb-4">
-        <h1 className="text-2xl">Shop</h1>
-        <div className="flex gap-4">
+        <h1 className={`${indieFlower.className} text-6xl`}>Shop</h1>
+        <div className={`${indieFlower.className} flex gap-4 text-4xl`}>
           <Link href="/">Home</Link>
           <Link href="/cart">Cart</Link>
         </div>
       </header>
-      <div className="grid grid-cols-4 gap-2">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2">
         {products.map((item: Product) => (
-          <>
+          <div className="relative border flex flex-col bg-white p-4 hover:shadow-lg">
             <Link key={item.id} href={`/products/${item.id}`}>
-              <div className="border bg-white">
-                <div>{item.title}</div>
-                <div>{item.price}</div>
+              <div className="my-5">
+                <div className="px-2 pt-2 pb-1 relative w-64 h-64 overflow-hidden">
+                  <Image
+                    src={item.image}
+                    fill
+                    className="object-contain"
+                    alt={item.title}
+                  ></Image>
+                </div>
+                <div className="p-2">
+                  <h2 className="font-semibold">{item.title}</h2>
+                  <h3>${item.price.toFixed(2)}</h3>
+                </div>
               </div>
             </Link>
-            <div>
-              <AddCartButton {...item} />
+            <div className="mt-5 static">
+              <AddCartButton item={item} />
             </div>
-          </>
+          </div>
         ))}
       </div>
     </>
