@@ -31,8 +31,11 @@ export default async function Shop() {
       </header>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2">
         {products.map((item: Product) => (
-          <div className="relative border flex flex-col bg-white p-4 hover:shadow-lg">
-            <Link key={item.id} href={`/products/${item.id}`}>
+          <div
+            key={item.id}
+            className="relative border flex flex-col bg-white p-4 hover:shadow-lg"
+          >
+            <Link href={`/products/${item.id}`}>
               <div className="my-5">
                 <div className="px-2 pt-2 pb-1 relative w-64 h-64 overflow-hidden">
                   <Image
