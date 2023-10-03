@@ -28,9 +28,15 @@ export default async function ProductPage({ params }: Props) {
     <div className="h-screen">
       <header className="flex justify-between items-center mb-4 py-5">
         <div className="flex gap-4">
-          <Link href="/">Home</Link>
-          <Link href="/shop">Shop</Link>
-          <Link href="/cart">Cart</Link>
+          <Link href="/" className="hover:text-5xl">
+            Home
+          </Link>
+          <Link href="/shop" className="hover:text-5xl">
+            Shop
+          </Link>
+          <Link href="/cart" className="hover:text-5xl">
+            Cart
+          </Link>
         </div>
       </header>
       <div className="grid grid-cols-1 sm:grid-cols-2 my-5 p-5 h-4/6">

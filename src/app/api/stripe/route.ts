@@ -23,8 +23,8 @@ export async function POST(req: Request) {
       };
     }),
     mode: 'payment',
-    success_url: 'http://localhost:3000',
-    cancel_url: 'http://localhost:3000',
+    success_url: 'http://localhost:3000/checkout/success',
+    cancel_url: 'http://localhost:3000/cart',
   });
 
   // return NextResponse.redirect(session.url!);

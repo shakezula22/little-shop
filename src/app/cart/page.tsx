@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { CartContext } from '../store/cart-store/cart-context';
 import Image from 'next/image';
 import { indieFlower } from '../utility/fonts';
+import NavBar from '../components/NavBar';
 
 export default function Cart() {
   const { cartItems, clearCart, addToCart, removeFromCart, getCartTotal } =
@@ -13,6 +14,7 @@ export default function Cart() {
   const total = getCartTotal();
 
   async function handleCheckout() {
+    if (cartItems.length === 0) return;
     const res = await fetch('/api/stripe', {
       method: 'POST',
       headers: {
@@ -30,10 +32,7 @@ export default function Cart() {
     <div>
       <header className="flex justify-between items-center mb-4">
         <h1 className={`${indieFlower.className} text-6xl`}>Your Cart</h1>
-        <div className={`${indieFlower.className} flex gap-4 text-4xl`}>
-          <Link href="/">Home</Link>
-          <Link href="/shop">Shop</Link>
-        </div>
+        <NavBar />
       </header>
       <div className="flex flex-col">
         {cartItems.map(item => (
@@ -57,7 +56,7 @@ export default function Cart() {
               </div>
             </div>
             <div className="flex justify-between w-1/6 h-20 items-center">
-              <div className="text-left">${item.price.toFixed(2)}</div>
+              <div className="text-left text-xl">${item.price.toFixed(2)}</div>
               <p>x</p>
               <div className="flex items-center h-10">
                 <button
@@ -80,25 +79,30 @@ export default function Cart() {
           </div>
         ))}
       </div>
-      <div className="flex justify-end border bg-white">
+      <div className="flex justify-between my-2">
         <div>
-          <h4>Cart Total</h4>
-          <h2>{total.toFixed(2)}</h2>
+          <button
+            className={`border rounded mr-2 bg-stone-800 hover:bg-stone-700 text-stone-300 p-2 ${
+              cartItems.length === 0
+                ? 'disabled:bg-stone-500 disabled:cursor-not-allowed'
+                : ''
+            }`}
+            onClick={handleCheckout}
+            disabled={cartItems.length === 0}
+          >
+            Checkout
+          </button>
+          <button
+            className="border rounded bg-stone-800 hover:bg-stone-700 text-stone-300 p-2"
+            onClick={clearCart}
+          >
+            Clear Cart
+          </button>
         </div>
-      </div>
-      <div>
-        <button
-          className="border rounded bg-stone-800 hover:bg-stone-700 text-stone-300 p-2"
-          onClick={handleCheckout}
-        >
-          Checkout
-        </button>
-        <button
-          className="border rounded bg-stone-800 hover:bg-stone-700 text-stone-300 p-2"
-          onClick={clearCart}
-        >
-          Clear Cart
-        </button>
+        <div className="flex border rounded bg-white px-2 py-1 items-center">
+          <h4 className="text-xl px-2 font-semibold">Total</h4>
+          <h2 className="px-2">${total.toFixed(2)}</h2>
+        </div>
       </div>
     </div>
   );

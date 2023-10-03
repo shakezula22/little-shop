@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 
-export default function error({
+export default function Error({
   error,
   reset,
 }: {
@@ -18,9 +18,16 @@ export default function error({
         <h1>{error.message || 'Page not found.'}</h1>
       </div>
       <div>
-        <button onClick={reset}>Try Again</button>
+        <button
+          className="border rounded bg-stone-800 hover:bg-stone-700 text-stone-300 p-2"
+          onClick={reset}
+        >
+          Try Again
+        </button>
         <Link href="/" passHref>
-          <button>Go Home</button>
+          <button className="border rounded bg-stone-800 hover:bg-stone-700 text-stone-300 p-2">
+            Go Home
+          </button>
         </Link>
       </div>
     </div>

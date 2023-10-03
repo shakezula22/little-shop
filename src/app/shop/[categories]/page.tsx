@@ -1,8 +1,14 @@
 import Link from 'next/link';
-import AddCartButton from '../components/AddToCartForm';
+import AddCartButton from '@/app/components/AddToCartForm';
 import Image from 'next/image';
-import { indieFlower } from '../utility/fonts';
-import NavBar from '../components/NavBar';
+import { indieFlower } from '@/app/utility/fonts';
+import NavBar from '@/app/components/NavBar';
+
+type Props = {
+  params: {
+    categories: string;
+  };
+};
 
 type Product = {
   id: number;
@@ -13,18 +19,21 @@ type Product = {
   image: string;
 };
 
-async function getProducts() {
-  const res = await fetch('https://fakestoreapi.com/products');
-  if (!res.ok) throw new Error('failed to fetch products');
+async function getProducts(category: string) {
+  const res = await fetch(
+    `https://fakestoreapi.com/products/category/${category}`
+  );
   return res.json();
 }
 
-export default async function Shop() {
-  const products = await getProducts();
+export default async function ShopByCategory({ params }: Props) {
+  const products = await getProducts(params.categories);
   return (
     <>
-      <header className="flex justify-between items-center mb-6 mt-5 px-5">
-        <h1 className={`${indieFlower.className} text-6xl`}>Shop All</h1>
+      <header className="flex justify-between items-center mt-5 mb-6">
+        <h1 className={`${indieFlower.className} text-6xl`}>
+          {decodeURIComponent(params.categories)}
+        </h1>
         <NavBar />
       </header>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2">
@@ -41,7 +50,6 @@ export default async function Shop() {
                     fill
                     className="object-contain"
                     alt={item.title}
-                    sizes="100vw"
                   ></Image>
                 </div>
                 <div className="p-2">
