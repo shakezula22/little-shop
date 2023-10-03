@@ -73,7 +73,7 @@ export default function Home() {
               />
             </div>
             <span className="text-4xl py-3 mt-2 peer-hover:scale-125 hover:scale-125">
-              Men's Clothing
+              {"Men's Clothing"}
             </span>
           </Link>
 
@@ -90,7 +90,7 @@ export default function Home() {
               />
             </div>
             <span className="text-4xl py-3 mt-2 peer-hover:scale-125 hover:scale-125">
-              Women's Clothing
+              {"Women's Clothing"}
             </span>
           </Link>
         </div>
