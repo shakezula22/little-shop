@@ -7,13 +7,13 @@ export default function Home() {
   return (
     <>
       <header className="flex justify-between items-center mb-10 mt-5">
-        <h1 className={`${indieFlower.className} text-6xl`}>Welcome</h1>
+        <h1 className={`${indieFlower.className} text-6xl`}>The Shoppe</h1>
         <NavBar />
       </header>
       <div
         className={`${indieFlower.className} flex flex-col h-[70rem] w-auto`}
       >
-        <div className="w-full h-1/3 relative overflow-hidden">
+        <div className="w-full h-1/2 relative overflow-hidden">
           <Image
             src="/shopping.jpg"
             alt="woman with shopping bags"
@@ -27,7 +27,7 @@ export default function Home() {
             Shop Your Favorites!
           </span>
         </div>
-        <div className="flex justify-around items-center w-full bg-stone-800 text-stone-50 h-2/5 my-5 pt-3">
+        <div className="flex justify-around items-center w-full bg-stone-800 text-stone-50 h-1/2 my-5 pt-3">
           <Link
             href="/shop/electronics"
             className="flex flex-col h-full justify-center py-2 text-center"

@@ -15,9 +15,6 @@ export default function Error({
         <p>Oops! Something went wrong.</p>
       </div>
       <div>
-        <h1>{error.message || 'Page not found.'}</h1>
-      </div>
-      <div>
         <button
           className="border rounded bg-stone-800 hover:bg-stone-700 text-stone-300 p-2"
           onClick={reset}

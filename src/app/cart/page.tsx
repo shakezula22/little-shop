@@ -79,7 +79,7 @@ export default function Cart() {
           </div>
         ))}
       </div>
-      <div className="flex justify-between my-2">
+      <div className="flex justify-between my-5">
         <div>
           <button
             className={`border rounded mr-2 bg-stone-800 hover:bg-stone-700 text-stone-300 p-2 ${
