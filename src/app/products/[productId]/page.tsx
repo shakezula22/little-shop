@@ -1,6 +1,6 @@
 import AddCartButton from '@/app/components/AddToCartForm';
-import Link from 'next/link';
 import Image from 'next/image';
+import NavBar from '@/app/components/NavBar';
 
 type Props = {
   params: {
@@ -25,37 +25,29 @@ const getProduct = async (id: number): Promise<Product> => {
 export default async function ProductPage({ params }: Props) {
   const item = await getProduct(+params.productId);
   return (
-    <div className="h-screen">
+    <div className="flex flex-col md:h-screen items-center">
       <header className="flex justify-between items-center mb-4 py-5">
-        <div className="flex gap-4">
-          <Link href="/" className="hover:text-5xl">
-            Home
-          </Link>
-          <Link href="/shop" className="hover:text-5xl">
-            Shop
-          </Link>
-          <Link href="/cart" className="hover:text-5xl">
-            Cart
-          </Link>
-        </div>
+        <NavBar />
       </header>
-      <div className="grid grid-cols-1 sm:grid-cols-2 my-5 p-5 h-4/6">
-        <div className="relative">
-          <Image
-            src={item.image}
-            fill
-            className="object-contain"
-            priority
-            alt={item.title}
-          />
+      <div className="grid grid-cols-1 justify-center sm:grid-cols-2 my-5 p-5 h-[800px] sm:h-4/6">
+        <div className="flex justify-center w-full pt-5 bg-white">
+          <div className="h-64 w-64 relative">
+            <Image
+              src={item.image}
+              fill
+              className="object-contain"
+              priority
+              alt={item.title}
+            />
+          </div>
         </div>
 
         <div className="flex flex-col gap-4">
-          <h1 className="text-2xl font-bold">{item.title}</h1>
+          <h1 className="text-2xl font-bold mt-3">{item.title}</h1>
 
           <h2>${item.price.toFixed(2)}</h2>
           <p>{item.description}</p>
-          <div className="relative p-2 w-full h-16">
+          <div className="relative w-full h-16">
             <AddCartButton item={item} />
           </div>
         </div>

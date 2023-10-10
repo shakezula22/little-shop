@@ -24,7 +24,7 @@ export default function AddCartButton(props: CartProps) {
   };
 
   return (
-    <form className="absolute bottom-1 left-1 m-2" onSubmit={onSubmitHandler}>
+    <form className="absolute bottom-1 left-2 m-2" onSubmit={onSubmitHandler}>
       <button
         className="border rounded bg-stone-800 hover:bg-stone-700 text-stone-300 p-2"
         type="submit"

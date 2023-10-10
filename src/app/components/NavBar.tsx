@@ -3,7 +3,9 @@ import { indieFlower } from '../utility/fonts';
 
 export default function NavBar() {
   return (
-    <div className={`${indieFlower.className} flex gap-4 text-4xl`}>
+    <div
+      className={`${indieFlower.className} flex pb-2 mx-4 border-b-2 md:border-b-0 gap-4 text-4xl`}
+    >
       <Link href="/" className="hover:scale-125">
         Home
       </Link>

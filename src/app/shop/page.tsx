@@ -23,19 +23,19 @@ export default async function Shop() {
   const products = await getProducts();
   return (
     <>
-      <header className="flex justify-between items-center mb-6 mt-5 px-5">
-        <h1 className={`${indieFlower.className} text-6xl`}>Shop All</h1>
+      <header className="flex flex-col md:flex-row justify-between items-center text-center mb-10 md:mb-5 mt-5 px-5">
+        <h1 className={`${indieFlower.className} mb-5 text-6xl`}>Shop All</h1>
         <NavBar />
       </header>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2">
         {products.map((item: Product) => (
           <div
             key={item.id}
-            className="relative border flex flex-col bg-white p-4 hover:scale-95 hover:shadow-lg"
+            className="relative border flex flex-col bg-white pl-6 pr-2 hover:scale-95 hover:shadow-lg"
           >
             <Link href={`/products/${item.id}`}>
-              <div className="my-5">
-                <div className="px-2 pt-2 pb-1 relative w-64 h-64 overflow-hidden">
+              <div className="flex flex-col items-center my-5 ">
+                <div className="px-2 pt-2 pb-1 relative w-44 h-44 lg:w-64 lg:h-64 overflow-hidden">
                   <Image
                     src={item.image}
                     fill
@@ -46,7 +46,7 @@ export default async function Shop() {
                 </div>
                 <div className="p-2">
                   <h2 className="font-semibold">{item.title}</h2>
-                  <h3>${item.price.toFixed(2)}</h3>
+                  <h3 className=" pt-1 pb-4">${item.price.toFixed(2)}</h3>
                 </div>
               </div>
             </Link>
