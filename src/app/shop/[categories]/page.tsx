@@ -30,8 +30,8 @@ export default async function ShopByCategory({ params }: Props) {
   const products = await getProducts(params.categories);
   return (
     <>
-      <header className="flex justify-between items-center mt-5 mb-6">
-        <h1 className={`${indieFlower.className} text-6xl`}>
+      <header className="flex flex-col md:flex-row justify-between items-center text-center mb-10 md:mb-5 mt-5 px-5">
+        <h1 className={`${indieFlower.className} text-6xl mb-2`}>
           {decodeURIComponent(params.categories)}
         </h1>
         <NavBar />
